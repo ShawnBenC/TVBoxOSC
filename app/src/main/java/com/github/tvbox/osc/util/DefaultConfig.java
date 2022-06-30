@@ -32,7 +32,7 @@ public class DefaultConfig {
             }
         }
         if (withMy)
-            data.add(0, new MovieSort.SortData("my0", "我的"));
+            data.add(0, new MovieSort.SortData("my0", "高桥の"));
         Collections.sort(data);
         return data;
     }
