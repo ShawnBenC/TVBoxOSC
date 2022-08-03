@@ -26,7 +26,7 @@
     <color name="color_02F8E1X">#02F8E1</color>
     <color name="color_02F8E1">#A3FF7500</color>//筛选字体模块
     <color name="color_353744X">#353744</color>
-    <color name="color_353744">#E6FF7500</color>//TV光标模块
+    <color name="color_353744">#E6363636</color>//TV光标模块
     <color name="color_CC353744X">#CC353744</color>
     <color name="color_CC353744">#6C3D3D3D</color>//同上未知
     <color name="color_6C3D3D3D">#6c3d3d3d</color>
@@ -37,5 +37,5 @@
     <color name="color_JDTZB">#E6FF7500</color>//左边
     <color name="color_JDTQQ">#E6FF7500</color>//球球
     <color name="color_JDTBTM">#6A000000</color>//半透明
-    <color name="color_TCBJS">#FF2D2D2D</color>//弹窗背景
+    <color name="color_TCBJS">#992D2D2D</color>//弹窗背景
 </resources>
