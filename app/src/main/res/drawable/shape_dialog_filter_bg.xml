@@ -3,6 +3,6 @@
     <corners
         android:topLeftRadius="@dimen/vs_10"
         android:topRightRadius="@dimen/vs_10" />
-    //<--    筛选页背景颜色-->
+    <!--    筛选页背景颜色-->
     <solid android:color="@color/color_JDTBTM" />
 </shape>
