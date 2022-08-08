@@ -4,7 +4,9 @@
     <color name="color_3700B3">#3700B3</color>
     <color name="color_03DAC5X">#03DAC5</color>
     <color name="color_03DAC5">#F08300</color>//按键选择
-    <color name="color_1890FF">#1890FF</color>
+    <color name="color_1890FFX">#1890FF</color>
+    <color name="color_1890FF">#CCFF7500</color>//主题+live字体
+    <color name="color_80FF750">#80FF7500</color>//live光标
     <color name="color_FFB800">#FF6600</color>
     <color name="color_00FF0A">#00FF0A</color>
     <color name="color_CBF46A">#CBF46A</color>
@@ -24,7 +26,7 @@
     <color name="color_CC00000X">#CC000000</color>
     <color name="color_CC000000">#FFFFFFFF</color>//弹窗字体
     <color name="color_02F8E1X">#02F8E1</color>
-    <color name="color_02F8E1">#A3FF7500</color>//光标字体模块
+    <color name="color_02F8E1">#BDFF7500</color>//光标字体模块
     <color name="color_353744X">#353744</color>
     <color name="color_353744">#F016160E</color>//TV光标模块
     <color name="color_CC353744X">#CC353744</color>
