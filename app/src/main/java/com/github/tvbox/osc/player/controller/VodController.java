@@ -219,8 +219,6 @@ public class VodController extends BaseController {
                     speed += 0.25f;
                     if (speed > 3)
                         speed = 0.5f;
-                    if (speed == 1)
-                        mPlayerFFwd.setCompoundDrawablesWithIntrinsicBounds(dFFwd, null, null, null);//
                     mPlayerConfig.put("sp", speed);
                     updatePlayerCfgView();
                     listener.updatePlayerCfg();
@@ -264,7 +262,6 @@ public class VodController extends BaseController {
             @Override
             public boolean onLongClick(View view) {
                 try {
-                    mPlayerFFwd.setCompoundDrawablesWithIntrinsicBounds(dFFwd, null, null, null);//
                     mPlayerConfig.put("sp", 1.0f);
                     updatePlayerCfgView();
                     listener.updatePlayerCfg();
@@ -577,20 +574,11 @@ public class VodController extends BaseController {
     void showBottom() {
         mHandler.removeMessages(1003);
         mHandler.sendEmptyMessage(1002);
-        mHandler.postDelayed(mHideBottomRunnable, 10000);//闲置自动隐藏控制条
     }
-    
-    Runnable mHideBottomRunnable = new Runnable() {
-        @Override
-        public void run() {
-            hideBottom();
-        }
-    };
     
     void hideBottom() {
         mHandler.removeMessages(1002);
         mHandler.sendEmptyMessage(1003);
-        mHandler.removeCallbacks(mHideBottomRunnable);//闲置 
     }
 
     @Override
@@ -599,8 +587,6 @@ public class VodController extends BaseController {
             return true;
         }
         if (isBottomVisible()) {
-            mHandler.removeCallbacks(mHideBottomRunnable);//
-            mHandler.postDelayed(mHideBottomRunnable, 10000);//闲置
             return super.dispatchKeyEvent(event);
         }
         boolean isInPlayback = isInPlaybackState();
@@ -617,8 +603,8 @@ public class VodController extends BaseController {
                     togglePlay();
                     return true;
                 }
-//           } else if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {   // Up to show 控制条真显示
-            } else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) || keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+            } else if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+            } else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
                 if (!isBottomVisible()) {
                     showBottom();
                 }
