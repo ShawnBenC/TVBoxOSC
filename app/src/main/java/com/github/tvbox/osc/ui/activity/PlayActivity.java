@@ -152,18 +152,27 @@ public class PlayActivity extends BaseActivity {
         };
         mVideoView.setProgressManager(progressManager);
         mController.setListener(new VodController.VodControlListener() {
-            @Override
+            @Override //倒叙选集正序播放
             public void playNext(boolean rmProgress) {
+                if (mVodInfo.reverseSort) {
+                    PlayActivity.this.playPrevious();
+                } else {
                 String preProgressKey = progressKey;
                 PlayActivity.this.playNext();
                 if (rmProgress && preProgressKey != null)
                     CacheManager.delete(MD5.string2MD5(preProgressKey), 0);
+                }
             }
 
-            @Override
+            @Override //倒叙if
             public void playPre() {
-                PlayActivity.this.playPrevious();
-            }
+                if (mVodInfo.reverseSort) {
+                    PlayActivity.this.playNext();
+                } else {
+                    PlayActivity.this.playPrevious();
+                }
+             }
+                
 
             @Override
             public void changeParse(ParseBean pb) {
