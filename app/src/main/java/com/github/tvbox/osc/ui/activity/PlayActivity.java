@@ -152,17 +152,25 @@ public class PlayActivity extends BaseActivity {
         };
         mVideoView.setProgressManager(progressManager);
         mController.setListener(new VodController.VodControlListener() {
-            @Override
+            @Override //倒叙选集正序播放
             public void playNext(boolean rmProgress) {
+                if (mVodInfo.reverseSort) {
+                    PlayActivity.this.playPrevious();
+                } else {
                 String preProgressKey = progressKey;
                 PlayActivity.this.playNext();
                 if (rmProgress && preProgressKey != null)
                     CacheManager.delete(MD5.string2MD5(preProgressKey), 0);
+                }
             }
 
-            @Override
+            @Override //倒叙if
             public void playPre() {
+                if (mVodInfo.reverseSort) {
+                    PlayActivity.this.playNext();
+                } else {
                 PlayActivity.this.playPrevious();
+                }
             }
                 
             @Override
@@ -419,7 +427,11 @@ public class PlayActivity extends BaseActivity {
             hasNext = mVodInfo.playIndex + 1 < mVodInfo.seriesMap.get(mVodInfo.playFlag).size();
         }
         if (!hasNext) {
-            Toast.makeText(this, "已经是最后一集了!", Toast.LENGTH_SHORT).show();
+            if (mVodInfo.reverseSort){
+               Toast.makeText(this, "已经是第一集了!", Toast.LENGTH_SHORT).show();  //倒叙if
+            }else {
+               Toast.makeText(this, "已经是最后一集了!", Toast.LENGTH_SHORT).show();
+            }
             return;
         }
         mVodInfo.playIndex++;
@@ -434,7 +446,11 @@ public class PlayActivity extends BaseActivity {
             hasPre = mVodInfo.playIndex - 1 >= 0;
         }
         if (!hasPre) {
-            Toast.makeText(this, "已经是第一集了!", Toast.LENGTH_SHORT).show();
+            if (mVodInfo.reverseSort){
+               Toast.makeText(this, "已经是最后一集了!", Toast.LENGTH_SHORT).show();  //倒叙if
+            }else {
+               Toast.makeText(this, "已经是第一集了!", Toast.LENGTH_SHORT).show();
+            }
             return;
         }
         mVodInfo.playIndex--;
