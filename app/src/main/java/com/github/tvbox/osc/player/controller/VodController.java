@@ -574,11 +574,20 @@ public class VodController extends BaseController {
     void showBottom() {
         mHandler.removeMessages(1003);
         mHandler.sendEmptyMessage(1002);
+        mHandler.postDelayed(mHideBottomRunnable, 10000); //不操作10秒隐藏控制栏
     }
-    
+    //不操作10秒隐藏控制栏
+    Runnable mHideBottomRunnable = new Runnable() {
+        @Override
+        public void run() {
+            hideBottom();
+        }
+    };
+
     void hideBottom() {
         mHandler.removeMessages(1002);
         mHandler.sendEmptyMessage(1003);
+        mHandler.removeCallbacks(mHideBottomRunnable); //
     }
 
     @Override
@@ -587,6 +596,9 @@ public class VodController extends BaseController {
             return true;
         }
         if (isBottomVisible()) {
+            //不操作10秒隐藏控制栏
+            mHandler.removeCallbacks(mHideBottomRunnable);
+            mHandler.postDelayed(mHideBottomRunnable, 10000);
             return super.dispatchKeyEvent(event);
         }
         boolean isInPlayback = isInPlaybackState();
