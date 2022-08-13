@@ -186,9 +186,9 @@ public class PlayActivity extends BaseActivity {
             }
 
             @Override
-            public void replay() {
+            public void replay(boolean replay) {
                 autoRetryCount = 0;
-                play();
+                play(replay);
             }
 
             @Override
@@ -330,7 +330,7 @@ public class PlayActivity extends BaseActivity {
             sourceKey = bundle.getString("sourceKey");
             sourceBean = ApiConfig.get().getSource(sourceKey);
             initPlayerCfg();
-            play();
+            play(false);
         }
     }
 
@@ -435,7 +435,7 @@ public class PlayActivity extends BaseActivity {
             return;
         }
         mVodInfo.playIndex++;
-        play();
+        play(false);
     }
 
     private void playPrevious() {
@@ -454,7 +454,7 @@ public class PlayActivity extends BaseActivity {
             return;
         }
         mVodInfo.playIndex--;
-        play();
+        play(false);
     }
 
     private int autoRetryCount = 0;
@@ -462,7 +462,7 @@ public class PlayActivity extends BaseActivity {
     boolean autoRetry() {
         if (autoRetryCount < 3) {
             autoRetryCount++;
-            play();
+            play(false);
             return true;
         } else {
             autoRetryCount = 0;
@@ -470,7 +470,7 @@ public class PlayActivity extends BaseActivity {
         }
     }
 
-    public void play() {
+    public void play(boolean reset) {
         VodInfo.VodSeries vs = mVodInfo.seriesMap.get(mVodInfo.playFlag).get(mVodInfo.playIndex);
         EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_REFRESH, mVodInfo.playIndex));
         setTip("正在获取播放信息", true, false);
@@ -480,7 +480,7 @@ public class PlayActivity extends BaseActivity {
         playUrl(null, null);
         String progressKey = mVodInfo.sourceKey + mVodInfo.id + mVodInfo.playFlag + mVodInfo.playIndex;
         //重新播放清除现有进度
-        if(reset){CacheManager.delete(MD5.string2MD5(progressKey), 0);}
+        if (reset) {CacheManager.delete(MD5.string2MD5(progressKey), 0);}
         if (Thunder.play(vs.url, new Thunder.ThunderCallback() {
             @Override
             public void status(int code, String info) {
