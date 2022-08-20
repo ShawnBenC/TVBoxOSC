@@ -50,7 +50,7 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".ui.activity.SearchActivity"
-            android:windowSoftInputMode="stateHidden"//搜索隐藏键盘
+            android:windowSoftInputMode="stateHidden" />//搜索隐藏键盘
             android:screenOrientation="landscape" />
         <activity
             android:name=".ui.activity.SettingActivity"
