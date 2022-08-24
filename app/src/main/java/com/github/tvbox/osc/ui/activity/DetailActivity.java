@@ -136,6 +136,7 @@ public class DetailActivity extends BaseActivity {
                 if (vodInfo != null && vodInfo.seriesMap.size() > 0) {
                     vodInfo.reverseSort = !vodInfo.reverseSort;
                     vodInfo.reverse();
+                    vodInfo.playIndex = vodInfo.seriesMap.get(vodInfo.playFlag).size() - 1 - vodInfo.playIndex; //倒叙选集重色问题
                     insertVod(sourceKey, vodInfo);
                     seriesAdapter.notifyDataSetChanged();
                 }
