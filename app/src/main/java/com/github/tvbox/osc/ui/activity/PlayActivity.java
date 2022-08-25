@@ -1118,7 +1118,7 @@ public class PlayActivity extends BaseActivity {
         settings.setLoadWithOverviewMode(true);
         settings.setBuiltInZoomControls(true);
         settings.setSupportZoom(false);
-        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        //settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         // settings.setUserAgentString(ANDROID_UA);
 
         webView.setBackgroundColor(Color.BLACK);
