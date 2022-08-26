@@ -36,7 +36,7 @@
                 android:ellipsize="end"
                 android:gravity="left"
                 android:maxLines="1"
-                android:paddingLeft="@dimen/vs_20"
+                android:paddingLeft="@dimen/vs_10"
                 android:shadowColor="#000000"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -318,7 +318,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:padding="@dimen/vs_20"
-            android:text="http://"
+            android:text="TvInfo"
             android:textColor="@android:color/white"
             android:textSize="@dimen/ts_24" />
 
