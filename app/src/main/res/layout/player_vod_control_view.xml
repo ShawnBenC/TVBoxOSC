@@ -36,7 +36,7 @@
                 android:ellipsize="end"
                 android:gravity="left"
                 android:maxLines="1"
-                android:paddingLeft="@dimen/vs_3"
+                android:paddingLeft="@dimen/vs_1"
                 android:shadowColor="#000000"
                 android:shadowDx="1"
                 android:shadowDy="1"
