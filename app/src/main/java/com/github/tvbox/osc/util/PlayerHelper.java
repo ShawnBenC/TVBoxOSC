@@ -188,8 +188,8 @@ public class PlayerHelper {
         if(speed > 1048576)
             return (speed / 1048576) + "MB/s";
         else if(speed > 1024)
-            return (speed / 1024) + "kB/s";
+            return (speed / 1024) + "KB/s";
         else
-            return speed > 0?speed + "B/s":"";
+            return speed + "B/s";
     }
 }
