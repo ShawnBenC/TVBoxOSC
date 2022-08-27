@@ -139,6 +139,12 @@ public class VodController extends BaseController {
         mPlayerTimeStepBtn = findViewById(R.id.play_time_step);
         mPlayLoadNetSpeed = findViewById(R.id.tv_play_load_net_speed);
         
+        mPlayLoadNetSpeed.post(new Runnable() {
+            @Override
+            public void run() {
+                mHandler.post(myRunnable2);
+            }
+        });
         
         mGridView.setLayoutManager(new V7LinearLayoutManager(getContext(), 0, false));
         ParseAdapter parseAdapter = new ParseAdapter();
