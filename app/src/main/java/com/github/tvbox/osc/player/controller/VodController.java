@@ -88,6 +88,7 @@ public class VodController extends BaseController {
     LinearLayout mParseRoot;
     TvRecyclerView mGridView;
     TextView mPlayTitle;
+    TextView mPlayTitle2;
     TextView mNextBtn;
     TextView mPreBtn;
     TextView mPlayerScaleBtn;
