@@ -101,6 +101,9 @@ public class VodController extends BaseController {
     TextView mPlayerTimeStepBtn;
     TextView mPlayLoadNetSpeed;
     
+    Handler myHandle;
+    Runnable myRunnable;
+    
     private Runnable myRunnable2 = new Runnable() {
         @Override
         public void run() {
