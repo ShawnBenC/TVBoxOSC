@@ -421,7 +421,7 @@
         android:id="@+id/tv_play_load_net_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="buttom"
+        android:layout_gravity="top"
         android:gravity="right"
         android:layout_marginRight="@dimen/vs_5"
         android:focusable="false"
