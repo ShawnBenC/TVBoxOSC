@@ -108,22 +108,16 @@ public class VodController extends BaseController {
     
     Runnable myRunnable;
     
-    private Runnable mPlayLoadNetSpeedRunnable = new Runnable() {
-        @Override
-        public void run() {
-            
-            mPlayLoadNetSpeed.setText(PlayerHelper.getDisplaySpeed(mControlWrapper.getTcpSpeed()));
-            mHandler.postDelayed(this, 1000);
-        }
-    };
-    private Runnable mVideoSizeRunnable = new Runnable() {
+    private Runnable myRunnable2 = new Runnable() {
         @Override
         public void run() {
             
             String width = Integer.toString(mControlWrapper.getVideoSize()[0]);
             String height = Integer.toString(mControlWrapper.getVideoSize()[1]);
             mVideoSize.setText(width + " X " + height);
-
+            
+            mPlayLoadNetSpeed.setText(PlayerHelper.getDisplaySpeed(mControlWrapper.getTcpSpeed()));
+            
             mHandler.postDelayed(this, 1000);
         }
     };
@@ -156,16 +150,10 @@ public class VodController extends BaseController {
         mPlayLoadNetSpeed = findViewById(R.id.tv_play_load_net_speed);
         mVideoSize = findViewById(R.id.tv_videosize);
         
-        mPlayLoadNetSpeed.post(new Runnable() {
-            @Override
-            public void run() {
-                mHandler.post(mPlayLoadNetSpeedRunnable);
-            }
-        });
         mVideoSize.post(new Runnable() {
             @Override
             public void run() {
-                mHandler.post(mVideoSizeRunnable);
+                mHandler.post(myRunnable2);
             }
         });
         
