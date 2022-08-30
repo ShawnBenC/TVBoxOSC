@@ -55,10 +55,12 @@ public class VodController extends BaseController {
                     }
                     case 1002: { // 显示底部菜单
                         mBottomRoot.setVisibility(VISIBLE);
+                        mTopRoot1.setVisibility(VISIBLE);
                         break;
                     }
                     case 1003: { // 隐藏底部菜单
                         mBottomRoot.setVisibility(GONE);
+                        mTopRoot1.setVisibility(GONE);
                         break;
                     }
                     case 1004: { // 设置速度
@@ -85,6 +87,7 @@ public class VodController extends BaseController {
     LinearLayout mProgressRoot;
     TextView mProgressText;
     ImageView mProgressIcon;
+    LinearLayout mTopRoot1;
     LinearLayout mBottomRoot;
     LinearLayout mParseRoot;
     TvRecyclerView mGridView;
@@ -130,6 +133,7 @@ public class VodController extends BaseController {
         mProgressRoot = findViewById(R.id.tv_progress_container);
         mProgressIcon = findViewById(R.id.tv_progress_icon);
         mProgressText = findViewById(R.id.tv_progress_text);
+        mTopRoot1 = findViewById(R.id.tv_top_container);
         mBottomRoot = findViewById(R.id.bottom_container);
         mParseRoot = findViewById(R.id.parse_root);
         mGridView = findViewById(R.id.mGridView);
@@ -582,6 +586,7 @@ public class VodController extends BaseController {
                 startProgress();
                 break;
             case VideoView.STATE_PAUSED:
+                 mTopRoot1.setVisibility(GONE);
                 break;
             case VideoView.STATE_ERROR:
                 listener.errReplay();
