@@ -6,13 +6,15 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-            android:id="@+id/tv_top_container"
+            android:id="@+id/tv_top_l_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:tag="tv_top_container"
             android:visibility="gone"
             tools:visibility="visible"
-            android:layout_marginTop="@dimen/vs_10"
+            android:layout_marginStart="@dimen/vs_20"
+            android:layout_marginLeft="@dimen/vs_20"
+            android:layout_marginTop="@dimen/vs_20"
             android:orientation="vertical">
 
             <TextView
