@@ -333,19 +333,19 @@
         android:tag="vod_control_pause"
         android:visibility="gone"
         tools:visibility="visible">
-/*
-        <TextView
-            android:id="@+id/tv_info_name2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:padding="@dimen/vs_20"
-            android:text="TvInfo"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/ts_24" />
-*/        
+
+        //<TextView
+          //  android:id="@+id/tv_info_name2"
+          //  android:layout_width="wrap_content"
+          //  android:layout_height="wrap_content"
+          //  android:layout_gravity="left"
+          //  android:ellipsize="end"
+          //  android:maxLines="1"
+          //  android:padding="@dimen/vs_20"
+          //  android:text="TvInfo"
+          //  android:textColor="@android:color/white"
+          //  android:textSize="@dimen/ts_24" />
+        
 
         <LinearLayout
             android:layout_width="@dimen/vs_280"
