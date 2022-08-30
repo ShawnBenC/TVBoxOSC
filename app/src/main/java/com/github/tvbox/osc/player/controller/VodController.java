@@ -133,7 +133,7 @@ public class VodController extends BaseController {
         mProgressRoot = findViewById(R.id.tv_progress_container);
         mProgressIcon = findViewById(R.id.tv_progress_icon);
         mProgressText = findViewById(R.id.tv_progress_text);
-        mTopRoot1 = findViewById(R.id.tv_top_container);
+        mTopRoot1 = findViewById(R.id.tv_top_l_container);
         mBottomRoot = findViewById(R.id.bottom_container);
         mParseRoot = findViewById(R.id.parse_root);
         mGridView = findViewById(R.id.mGridView);
