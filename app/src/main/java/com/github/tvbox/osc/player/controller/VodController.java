@@ -108,7 +108,7 @@ public class VodController extends BaseController {
     
     Runnable myRunnable;
     
-    private Runnable myRunnable2 = new Runnable() {
+    private Runnable ViewRunnable = new Runnable() {
         @Override
         public void run() {
             
@@ -116,7 +116,7 @@ public class VodController extends BaseController {
             mHandler.postDelayed(this, 1000);
         }
     };
-    private Runnable myRunnable2 = new Runnable() {
+    private Runnable mVideoSizeRunnable = new Runnable() {
         @Override
         public void run() {
             
@@ -159,13 +159,13 @@ public class VodController extends BaseController {
         mPlayLoadNetSpeed.post(new Runnable() {
             @Override
             public void run() {
-                mHandler.post(myRunnable2);
+                mHandler.post(mPlayLoadNetSpeedRunnable);
             }
         });
         mVideoSize.post(new Runnable() {
             @Override
             public void run() {
-                mHandler.post(myRunnable2);
+                mHandler.post(mVideoSizeRunnable);
             }
         });
         
