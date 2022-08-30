@@ -108,7 +108,7 @@ public class VodController extends BaseController {
     
     Runnable myRunnable;
     
-    private Runnable ViewRunnable = new Runnable() {
+    private Runnable mPlayLoadNetSpeedRunnable = new Runnable() {
         @Override
         public void run() {
             
