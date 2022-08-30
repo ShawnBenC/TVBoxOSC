@@ -55,10 +55,12 @@ public class VodController extends BaseController {
                     }
                     case 1002: { // 显示底部菜单
                         mBottomRoot.setVisibility(VISIBLE);
+                        mTopRoot1.setVisibility(VISIBLE);
                         break;
                     }
                     case 1003: { // 隐藏底部菜单
                         mBottomRoot.setVisibility(GONE);
+                        mTopRoot1.setVisibility(GONE);
                         break;
                     }
                     case 1004: { // 设置速度
@@ -85,11 +87,12 @@ public class VodController extends BaseController {
     LinearLayout mProgressRoot;
     TextView mProgressText;
     ImageView mProgressIcon;
+    LinearLayout mTopRoot1;
     LinearLayout mBottomRoot;
     LinearLayout mParseRoot;
     TvRecyclerView mGridView;
     TextView mPlayTitle;
-    TextView mPlayTitle2;
+//  TextView mPlayTitle2;
     TextView mNextBtn;
     TextView mPreBtn;
     TextView mPlayerScaleBtn;
@@ -101,6 +104,7 @@ public class VodController extends BaseController {
     TextView mPlayerTimeSkipBtn;
     TextView mPlayerTimeStepBtn;
     TextView mPlayLoadNetSpeed;
+    TextView mVideoSize;
     
     Runnable myRunnable;
     
@@ -112,6 +116,17 @@ public class VodController extends BaseController {
             mHandler.postDelayed(this, 1000);
         }
     };
+    private Runnable myRunnable2 = new Runnable() {
+        @Override
+        public void run() {
+            
+            String width = Integer.toString(mControlWrapper.getVideoSize()[0]);
+            String height = Integer.toString(mControlWrapper.getVideoSize()[1]);
+            mVideoSize.setText(width + " X " + height);
+
+            mHandler.postDelayed(this, 1000);
+        }
+    };
 
     @Override
     protected void initView() {
@@ -119,11 +134,12 @@ public class VodController extends BaseController {
         mCurrentTime = findViewById(R.id.curr_time);
         mTotalTime = findViewById(R.id.total_time);
         mPlayTitle = findViewById(R.id.tv_info_name);
-        mPlayTitle2 = findViewById(R.id.tv_info_name2);
+//      mPlayTitle2 = findViewById(R.id.tv_info_name2);
         mSeekBar = findViewById(R.id.seekBar);
         mProgressRoot = findViewById(R.id.tv_progress_container);
         mProgressIcon = findViewById(R.id.tv_progress_icon);
         mProgressText = findViewById(R.id.tv_progress_text);
+        mTopRoot1 = findViewById(R.id.tv_top_container);
         mBottomRoot = findViewById(R.id.bottom_container);
         mParseRoot = findViewById(R.id.parse_root);
         mGridView = findViewById(R.id.mGridView);
@@ -138,8 +154,15 @@ public class VodController extends BaseController {
         mPlayerTimeSkipBtn = findViewById(R.id.play_time_end);
         mPlayerTimeStepBtn = findViewById(R.id.play_time_step);
         mPlayLoadNetSpeed = findViewById(R.id.tv_play_load_net_speed);
+        mVideoSize = findViewById(R.id.tv_videosize);
         
         mPlayLoadNetSpeed.post(new Runnable() {
+            @Override
+            public void run() {
+                mHandler.post(myRunnable2);
+            }
+        });
+        mVideoSize.post(new Runnable() {
             @Override
             public void run() {
                 mHandler.post(myRunnable2);
@@ -453,7 +476,7 @@ public class VodController extends BaseController {
 
     public void setTitle(String playTitleInfo) {
         mPlayTitle.setText(playTitleInfo);
-        mPlayTitle2.setText(playTitleInfo);
+//      mPlayTitle2.setText(playTitleInfo);
     }
 
     public void resetSpeed() {
@@ -575,6 +598,7 @@ public class VodController extends BaseController {
                 startProgress();
                 break;
             case VideoView.STATE_PAUSED:
+                mTopRoot1.setVisibility(GONE);
                 break;
             case VideoView.STATE_ERROR:
                 listener.errReplay();
