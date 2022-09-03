@@ -9,10 +9,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.tvbox.osc.R;
+import com.github.tvbox.osc.api.ApiConfig;
 import com.github.tvbox.osc.base.BaseLazyFragment;
 import com.github.tvbox.osc.bean.AbsXml;
 import com.github.tvbox.osc.bean.Movie;
 import com.github.tvbox.osc.bean.MovieSort;
+import com.github.tvbox.osc.bean.SourceBean;
 import com.github.tvbox.osc.ui.activity.DetailActivity;
 import com.github.tvbox.osc.ui.activity.SearchActivity;
 import com.github.tvbox.osc.ui.adapter.GridAdapter;
@@ -194,6 +196,8 @@ public class GridFragment extends BaseLazyFragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("id", video.id);
                     bundle.putString("sourceKey", video.sourceKey);
+                    bundle.putString("title", video.name);
+                    SourceBean homeSourceBean = ApiConfig.get().getHomeSourceBean();
                 if(("12".indexOf(getUITag()) != -1) && video.tag.equals("folder")){
                         focusedView = view;
                         changeView(video.id);
