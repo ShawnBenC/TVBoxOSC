@@ -202,8 +202,10 @@ public class GridFragment extends BaseLazyFragment {
                         focusedView = view;
                         changeView(video.id);
                     }
+                    else 
+                if(homeSourceBean.isQuickSearch() && Hawk.get(HawkConfig.FAST_SEARCH_MODE, false)){
                     jumpActivity(DetailActivity.class, bundle);
-                    
+                    }
                 }
             }
         });
