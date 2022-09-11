@@ -88,9 +88,10 @@ dependencies {
 
     implementation project(":player")
 
-    implementation('org.xwalk:xwalk_shared_library:23.53.589.4') {
+    /*implementation('org.xwalk:xwalk_shared_library:23.53.589.4') {
         exclude group: 'com.android.support'
-    }
+    }*/
+    implementation files('libs\\xwalk_shared_library-23.53.589.4.aar')
     
     
     implementation 'com.lzy.net:okgo:3.0.4'
