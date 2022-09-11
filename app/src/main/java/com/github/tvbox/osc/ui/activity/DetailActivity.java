@@ -89,6 +89,7 @@ public class DetailActivity extends BaseActivity {
     public String sourceKey;
     boolean seriesSelect = false;
     private View seriesFlagFocus = null;
+    private String preFlag="";
 
     @Override
     protected int getLayoutResID() {
@@ -246,6 +247,7 @@ public class DetailActivity extends BaseActivity {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 FastClickCheckUtil.check(view);
                 if (vodInfo != null && vodInfo.seriesMap.get(vodInfo.playFlag).size() > 0) {
+                    boolean reload = false;
                     if (vodInfo.playIndex != position) {
                         seriesAdapter.getData().get(vodInfo.playIndex).selected = false;
                         seriesAdapter.notifyItemChanged(vodInfo.playIndex);
