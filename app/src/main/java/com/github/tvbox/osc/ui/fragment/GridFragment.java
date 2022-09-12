@@ -201,10 +201,6 @@ public class GridFragment extends BaseLazyFragment {
                         focusedView = view;
                         changeView(video.id);
                     }else{
-                        jumpActivity(FastSearchActivity.class, bundle);
-                    }else if(video.id.isEmpty() || video.id.startsWith("msearch:")){
-                        jumpActivity(SearchActivity.class, bundle);    
-                    }else{
                         jumpActivity(DetailActivity.class, bundle);
                     }
                 }
