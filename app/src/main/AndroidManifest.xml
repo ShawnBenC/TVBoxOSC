@@ -48,9 +48,14 @@
         <activity
             android:name=".ui.activity.PushActivity"
             android:screenOrientation="landscape" />
+        <!--搜索软键盘不被拉起"stateHidden"-->
         <activity
             android:name=".ui.activity.SearchActivity"
-            android:windowSoftInputMode="stateHidden" />//搜索隐藏键盘
+            android:windowSoftInputMode="stateHidden" 
+            android:screenOrientation="landscape" />
+            <activity
+            android:name=".ui.activity.FastSearchActivity"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape" />
         <activity
             android:name=".ui.activity.SettingActivity"

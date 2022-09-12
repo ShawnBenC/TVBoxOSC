@@ -9,11 +9,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.tvbox.osc.R;
+import com.github.tvbox.osc.api.ApiConfig;
 import com.github.tvbox.osc.base.BaseLazyFragment;
 import com.github.tvbox.osc.bean.AbsXml;
 import com.github.tvbox.osc.bean.Movie;
 import com.github.tvbox.osc.bean.MovieSort;
+import com.github.tvbox.osc.bean.SourceBean;
 import com.github.tvbox.osc.ui.activity.DetailActivity;
+import com.github.tvbox.osc.ui.activity.FastSearchActivity;
 import com.github.tvbox.osc.ui.activity.SearchActivity;
 import com.github.tvbox.osc.ui.adapter.GridAdapter;
 import com.github.tvbox.osc.ui.dialog.GridFilterDialog;
@@ -194,13 +197,38 @@ public class GridFragment extends BaseLazyFragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("id", video.id);
                     bundle.putString("sourceKey", video.sourceKey);
+                    bundle.putString("title", video.name);
+                    
+                    SourceBean homeSourceBean = ApiConfig.get().getHomeSourceBean();
                 if(("12".indexOf(getUITag()) != -1) && video.tag.equals("folder")){
                         focusedView = view;
                         changeView(video.id);
+                    }else if(homeSourceBean.isQuickSearch() && Hawk.get(HawkConfig.FAST_SEARCH_MODE, false) && enableFastSearch()){
+                        jumpActivity(FastSearchActivity.class, bundle);
                     }else{
-                    jumpActivity(DetailActivity.class, bundle);
+                if(video.id.isEmpty() || video.id.startsWith("msearch:")){
+                        jumpActivity(SearchActivity.class, bundle);    
+                    }else{
+                        jumpActivity(DetailActivity.class, bundle);
+                        }
                     }
                 }
+            }
+        });
+        // takagen99 : Long Press to Fast Search (长按快速搜索)
+        gridAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                FastClickCheckUtil.check(view);
+                Movie.Video video = gridAdapter.getData().get(position);
+                if (video != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", video.id);
+                    bundle.putString("sourceKey", video.sourceKey);
+                    bundle.putString("title", video.name);
+                    jumpActivity(FastSearchActivity.class, bundle);
+                }
+                return true;
             }
         });
         gridAdapter.setLoadMoreView(new LoadMoreView());    
