@@ -186,8 +186,18 @@ public class DetailActivity extends BaseActivity {
         tvCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RoomDataManger.insertVodCollect(sourceKey, vodInfo);
-                Toast.makeText(DetailActivity.this, "已加入收藏夹", Toast.LENGTH_SHORT).show();
+//              RoomDataManger.insertVodCollect(sourceKey, vodInfo);
+//              Toast.makeText(DetailActivity.this, "已加入收藏夹", Toast.LENGTH_SHORT).show();
+                String text = tvCollect.getText().toString();
+                if ("加入收藏".equals(text)) {
+                    RoomDataManger.insertVodCollect(sourceKey, vodInfo);
+                    Toast.makeText(DetailActivity.this, "已加入收藏夹", Toast.LENGTH_SHORT).show();
+                    tvCollect.setText("取消收藏");
+                } else {
+                    RoomDataManger.deleteVodCollect(sourceKey, vodInfo);
+                    Toast.makeText(DetailActivity.this, "已移除收藏夹", Toast.LENGTH_SHORT).show();
+                    tvCollect.setText("加入收藏");
+                }
             }
         });
         mGridView.setOnItemListener(new TvRecyclerView.OnItemListener() {
@@ -254,6 +264,7 @@ public class DetailActivity extends BaseActivity {
                         seriesAdapter.getData().get(position).selected = true;
                         seriesAdapter.notifyItemChanged(position);
                         vodInfo.playIndex = position;
+                        reload = true;
                     }
                     //try_当前集不刷新
                     if (!preFlag.isEmpty() && !vodInfo.playFlag.equals(preFlag)) {
@@ -425,6 +436,12 @@ public class DetailActivity extends BaseActivity {
             sourceKey = key;
             showLoading();
             sourceViewModel.getDetail(sourceKey, vodId);
+            boolean isVodCollect = RoomDataManger.isVodCollect(sourceKey, vodId);
+            if (isVodCollect) {
+                tvCollect.setText("取消收藏");
+            } else {
+                tvCollect.setText("加入收藏");
+            }
         }
     }
 

@@ -186,9 +186,9 @@ public class PlayActivity extends BaseActivity {
             }
 
             @Override
-            public void replay() {
+            public void replay(boolean replay) {
                 autoRetryCount = 0;
-                play(true);
+                play(replay);
             }
 
             @Override

@@ -207,11 +207,21 @@ public class VodController extends BaseController {
                 mControlWrapper.startFadeOut();
             }
         });
+//      Replay from start  重头开始播放
         mPlayerRetry.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.replay();
+                listener.replay(true);
                 hideBottom();
+            }
+        });
+//      takagen99: Add long press to refresh (not from start)  添加长按刷新（不是从头开始）
+        mPlayerRetry.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                listener.replay(false);
+                hideBottom();
+                return true;
             }
         });
         mNextBtn.setOnClickListener(new OnClickListener() {
@@ -284,7 +294,7 @@ public class VodController extends BaseController {
                     mPlayerConfig.put("pl", playerType);
                     updatePlayerCfgView();
                     listener.updatePlayerCfg();
-                    listener.replay();
+                    listener.replay(false);
                     // hideBottom();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -325,8 +335,8 @@ public class VodController extends BaseController {
                     mPlayerConfig.put("ijk", ijk);
                     updatePlayerCfgView();
                     listener.updatePlayerCfg();
-                    listener.replay();
-                    hideBottom();
+                    listener.replay(false);
+                    //hideBottom();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -422,6 +432,15 @@ public class VodController extends BaseController {
                 updatePlayerCfgView();
             }
         });
+        // takagen99: 添加长按重置计数器增加 Add long press to reset counter
+        mPlayerTimeStepBtn.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Hawk.put(HawkConfig.PLAY_TIME_STEP, 5);
+                updatePlayerCfgView();
+                return true;
+            }
+        });
     }
 
     @Override
@@ -482,7 +501,7 @@ public class VodController extends BaseController {
 
         void updatePlayerCfg();
 
-        void replay();
+        void replay(boolean replay);
 
         void errReplay();
     }
